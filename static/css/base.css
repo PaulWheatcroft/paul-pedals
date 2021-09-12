@@ -2,4 +2,8 @@
 
 h1 {
     font-family: 'Tourney', cursive;
+    font-size: 19px;
+}
+main {
+    padding-top: 56px;
 }
