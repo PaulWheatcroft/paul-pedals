@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Take a look at {{the_text }}</h1>
-    <h1>Take a look at {{ the_number }}</h1>
-    <h1>Take a look at {{ the_boolean }}</h1>
-    <h1>Take a look at what we sell</h1>
-    <h1>Take a look at {{ from_database }}</h1>
+
+    {% for data in from_database %}
+        <h1>{{ data.title }}</h1>
+        <img src="{{ data.image.url }}" class="product-images" alt="{{ data.title }}">
+        <p><strong>£{{ data.price }}</strong></p>
+        <button type="button" class="btn btn-primary">See Details {{ data.id }}</button>
+    {% endfor %}
         
     <p>Lots of really nice stuff. Innit. :-)</p>
 {% endblock %}

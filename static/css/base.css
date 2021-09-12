@@ -2,8 +2,11 @@
 
 h1 {
     font-family: 'Tourney', cursive;
-    font-size: 19px;
+    font-size: 35px;
 }
 main {
-    padding-top: 56px;
+    padding-top: 100px;
+}
+.product-images {
+    max-height: 200px;
 }
