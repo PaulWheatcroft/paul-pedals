@@ -7,6 +7,6 @@ h1 {
 main {
     padding-top: 100px;
 }
-.product-images {
-    max-height: 200px;
+.my-card {
+    margin-bottom: 20px;
 }

@@ -1,17 +1,29 @@
-from django.shortcuts import render
+""" Items imported from Django """
+from django.shortcuts import render, get_object_or_404
 from .models import Product
 
 
 def products_view(request):
+    """ A view to show all products """
     from_database = Product.objects.all()
 
     my_context = {
-        "the_text": "these are words",
-        'the_number': 123,
-        'the_boolean': True,
         'from_database': from_database,
     }
 
     # products = Product.objects.all()
 
     return render(request, "products.html", my_context)
+
+
+def product_detail(request, product_id):
+    """ A view to show product detail """
+    product = get_object_or_404(Product, pk=product_id)
+
+    context = {
+        'product': product,
+    }
+
+    # products = Product.objects.all()
+
+    return render(request, "product_detail.html", context)
