@@ -7,6 +7,13 @@ def products_view(request):
     """ A view to show all products """
     from_database = Product.objects.all()
 
+#    if request.POST:
+#       sort_type = request.GET['sort_type']
+#       print(sort_type)
+#       return
+
+    from_database = from_database.order_by('title')
+
     my_context = {
         'from_database': from_database,
     }

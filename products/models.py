@@ -2,7 +2,19 @@ from django.db import models
 
 
 # Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=120)
+    friendly_name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
+
 class Product(models.Model):
+    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=120)
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)

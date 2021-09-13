@@ -7,6 +7,6 @@ h1 {
 main {
     padding-top: 100px;
 }
-.my-card {
+.my-card, .my-row {
     margin-bottom: 20px;
 }

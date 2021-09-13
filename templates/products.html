@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<div class="row my-row">
+    <div class="col-12 col-md-6 justify-content-center">
+        <div class="sort-select-wrapper w-50">
+            <form method="{% url 'products_view' %}" action="POST" id="sort_type" name="sort_type">
+                <select id="sort-selector" class="form-select">
+                    <option value="name_asc">Name (A-Z)</option>
+                    <option value="name_desc">Name (Z-A)</option>
+                    <option value="price_asc">Price (low to high)</option>
+                    <option value="price_desc">Price (high to low)</option>                   
+                </select>
+                <button class="btn btn-info btn-sm">Sort</button>
+            </form>           
+        </div>
+    </div>
+</div>
+
+
 <div class="row">
     {% for data in from_database %}
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex">
         <div class="card my-card" style="width: 18rem;">
             <img src="{{ data.image.url }}" class="product-images" alt="{{ data.title }}">
-            <div class="card-body">
+            <div class="card-body bg-light">
               <h5 class="card-title">{{ data.title }}</h5>
-              <h6>Category</h6>
+              <h6>{{ data.category.friendly_name }}</h6>
               <p class="card-text">£{{ data.price }}</p>
               <a href="{% url 'product_detail' data.id %}" class="btn btn-primary">View Details</a>
             </div>
@@ -17,8 +35,4 @@
     {% endfor %}
 </div>
     
-
-    
-        
-    <p>Lots of really nice stuff. Innit. :-)</p>
 {% endblock %}
