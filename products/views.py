@@ -7,20 +7,43 @@ def products_view(request):
     """ A view to show all products """
     from_database = Product.objects.all()
 
-#    if request.POST:
-#       sort_type = request.GET['sort_type']
-#       print(sort_type)
-#       return
-
-    from_database = from_database.order_by('title')
-
-    my_context = {
-        'from_database': from_database,
-    }
-
-    # products = Product.objects.all()
-
-    return render(request, "products.html", my_context)
+    sort_type = request.POST.get('sort-selector')
+    print(sort_type)
+    if sort_type is None:
+        from_database = from_database.order_by('title')
+        my_context = {
+            'from_database': from_database,
+            'sort_type': sort_type,
+        }
+        return render(request, "products.html", my_context)
+    if sort_type == 'name_asc':
+        from_database = from_database.order_by('title')
+        my_context = {
+            'from_database': from_database,
+            'sort_type': sort_type,
+        }
+        return render(request, "products.html", my_context)
+    if sort_type == 'name_desc':
+        from_database = from_database.order_by('-title')
+        my_context = {
+            'from_database': from_database,
+            'sort_type': sort_type,
+        }
+        return render(request, "products.html", my_context)
+    if sort_type == 'price_asc':
+        from_database = from_database.order_by('price')
+        my_context = {
+            'from_database': from_database,
+            'sort_type': sort_type,
+        }
+        return render(request, "products.html", my_context)
+    if sort_type == 'price_desc':
+        from_database = from_database.order_by('-price')
+        my_context = {
+            'from_database': from_database,
+            'sort_type': sort_type,
+        }
+        return render(request, "products.html", my_context)
 
 
 def product_detail(request, product_id):
