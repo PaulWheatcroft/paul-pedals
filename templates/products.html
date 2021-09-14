@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row my-row">
-    <div class="col-12 col-md-6 justify-content-center">
+    <div class="col-12 justify-content-center">
         <div class="sort-select-wrapper w-50">
             <form method="POST" action="{% url 'products_view' %}" id="sort_type" name="sort_type">
                 {% csrf_token %}
@@ -12,6 +12,12 @@
                     <option value="name_desc" {% if sort_type == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
                     <option value="price_asc" {% if sort_type == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                     <option value="price_desc"{% if sort_type == 'price_desc' %}selected{% endif %}>Price (high to low)</option>                   
+                </select>
+                <select name="effect-selector" id="effect-selector" class="form-select">
+                    <option value="name_asc" {% if effect_type == 'all' %}selected{% endif %}>All</option>
+                    <option value="name_asc" {% if effect_type == 'reverb' %}selected{% endif %}>Reverb</option>
+                    <option value="name_desc" {% if effect_type == 'distortion' %}selected{% endif %}>Distortion</option>
+                    <option value="price_asc" {% if effect_type == 'modulation' %}selected{% endif %}>Modulation</option>                 
                 </select>
                 <button class="btn btn-info btn-sm">Sort</button>
             </form>           
