@@ -13,7 +13,13 @@
         <p class="card-text">£{{ product.price }}</p>
         <p class="card-text">£{{ product.description }}</p>
         <a href="javascript:window.history.back();" class="btn btn-primary">Back</a>
-        <button type="button" class="btn btn-dark">Buy It!</button>          
+        <form action="" method="POST" class="form">
+            <input class="form-control" type="number" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+
+            <input type="submit" class="btn btn-dark" value="Add to Bag">
+            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+        </form>
+       
     </div>   
 </div>
 {% endblock %}

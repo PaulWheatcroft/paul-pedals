@@ -49,7 +49,7 @@ def products_view(request):
 def product_detail(request, product_id):
     """ A view to show product detail """
     product = get_object_or_404(Product, pk=product_id)
-
+    print(request.path)
     context = {
         'product': product,
     }
