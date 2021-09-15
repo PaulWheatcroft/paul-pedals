@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Your Shopping Bag  {{ request.user }}</h1>
+       
+    {% if bag_items %}
+        <div class="table-responsive rounded">
+
+        </div>
+    {% else %}
+        <p>Your bag is empty</p>
+    {% endif %}
+    <a href="javascript:window.history.back();" class="btn btn-primary">Back</a>
+{% endblock %}
