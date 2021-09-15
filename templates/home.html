@@ -3,5 +3,6 @@
 {% block content %}
     <h1>Welcome to the Home</h1>
         {{ request.user }}
+        <p>I am a variable in settings.py and made available through a context file (in the bag app) <strong>{{ pointless_number }}</strong></p>
     <p>This is the home of the home. Nice huh?</p>
 {% endblock %}
