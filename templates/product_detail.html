@@ -12,9 +12,13 @@
         <h6>{{ product.category.friendly_name }}</h6>
         <p class="card-text">£{{ product.price }}</p>
         <p class="card-text">£{{ product.description }}</p>
-        <a href="javascript:window.history.back();" class="btn btn-primary">Back</a>
-        <form action="" method="POST" class="form">
-            <input class="form-control" type="number" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+        
+        <!-- Form for adding a product to a bag -->
+        <!-- Don't forget {% csrf_token %} Django cross-site forgery -->
+        <form action="{% url 'add_to_bag' product.id %}" method="POST" class="form">
+            {% csrf_token %}
+            <input class="form-control" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+            <a href="{% url 'products' %}" class="btn btn-primary">Keep Shopping</a>
 
             <input type="submit" class="btn btn-dark" value="Add to Bag">
             <input type="hidden" name="redirect_url" value="{{ request.path }}">
