@@ -2,13 +2,40 @@
 
 {% block content %}
     <h1>Your Shopping Bag  {{ request.user }}</h1>
-       
-    {% if bag_items %}
-        <div class="table-responsive rounded">
+    
 
-        </div>
-    {% else %}
-        <p>Your bag is empty</p>
-    {% endif %}
+    <table class="table table-sm">
+      <thead>
+        <tr>
+            <th scope="col">Product Image</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">ID</th>
+            <th scope="col">Individual Price</th>
+            <th scope="col">Total Item Price</th>
+        </tr>
+      </thead>
+      <tbody> 
+    {% for item in bag_items %} 
+            <tr>
+                <td><img src="{{ item.product.image.url }}" class="bag-images" alt="{{ data.title }}"></td>
+                <td>{{ item.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.item_id }}</td>
+                <td>{{ item.product.price }}</td>
+                <td>£{{ item.line_price }}</td>
+                
+            </tr>
+    {% endfor %}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>£{{ total }}</td>
+        
+    </tr>
+        </tbody>
+    </table>
     <a href="javascript:window.history.back();" class="btn btn-primary">Back</a>
 {% endblock %}

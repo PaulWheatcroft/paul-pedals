@@ -10,3 +10,6 @@ main {
 .my-card, .my-row {
     margin-bottom: 20px;
 }
+.bag-images {
+    max-height: 60px;
+}
