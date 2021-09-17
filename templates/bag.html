@@ -3,14 +3,16 @@
 {% block content %}
     <h1>Your Shopping Bag  {{ request.user }}</h1>
     
+    <h2>{{ request.session.bag }}</h2>
 
     <table class="table table-sm">
       <thead>
         <tr>
             <th scope="col">Product Image</th>
             <th scope="col">Product Name</th>
-            <th scope="col">Quantity</th>
             <th scope="col">ID</th>
+            <th scope="col">Quantity</th>
+            
             <th scope="col">Individual Price</th>
             <th scope="col">Total Item Price</th>
         </tr>
@@ -20,8 +22,22 @@
             <tr>
                 <td><img src="{{ item.product.image.url }}" class="bag-images" alt="{{ data.title }}"></td>
                 <td>{{ item.product }}</td>
-                <td>{{ item.quantity }}</td>
                 <td>{{ item.item_id }}</td>
+                <td><form action="{% url 'amend_to_bag' item.item_id %}" method="POST" class="form">
+                    {% csrf_token %}
+                    <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="-1" max="99" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+        
+                    <input type="submit" class="btn btn-dark" value="Amend Bag">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+                <form action="{% url 'remove_bag_item' item.item_id %}" method="POST" class="form">
+                    {% csrf_token %}
+                    <input class="form-control" type="number" name="remove_item" value="{{ item.quantity }}" min="-1" max="99" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+        
+                    <input type="submit" class="btn btn-danger" value="Remove Item">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            </td>                
                 <td>{{ item.product.price }}</td>
                 <td>£{{ item.line_price }}</td>
                 
