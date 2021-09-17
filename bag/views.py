@@ -11,6 +11,9 @@ def view_bag(request):
 
 def add_to_bag(request, item_id):
     """ View to add items to a bag """
+    # """ Get bag from session """
+    # """ Amend bag contents """
+    # """ put the bag back in the session """
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
