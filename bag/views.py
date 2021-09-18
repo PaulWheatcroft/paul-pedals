@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 # Create your views here.
 
@@ -27,6 +28,7 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
     print('add_to_bag')
     print(request.session['bag'])
+    messages.add_message(request, messages.INFO, 'Hello world.')
     return redirect(redirect_url)
 
 
