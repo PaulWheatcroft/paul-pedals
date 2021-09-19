@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import stripe
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -149,3 +150,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 A_NUMBER = 33
 A_WORD = 'waffle'
 DELIVERY = 5.00
+
+
+stripe.api_key = 'sk_test_51JbUF4E676Ho8chXR9f0v9ofwoPiH5KFLLh5vE76zARnD0PrCx43cmljS8FikNDDGzsUeySZmJBR6tDjkRV2P2uh00F4AsZyKL'
