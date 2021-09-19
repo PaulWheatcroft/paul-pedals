@@ -50,10 +50,11 @@ def product_detail(request, product_id):
     """ A view to show product detail """
     product = get_object_or_404(Product, pk=product_id)
     print(request.path)
+    template = './product_detail.html'
     context = {
         'product': product,
     }
 
     # products = Product.objects.all()
 
-    return render(request, "product_detail.html", context)
+    return render(request, template, context)

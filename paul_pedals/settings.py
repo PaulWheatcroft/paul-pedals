@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+
+    # OTHET
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +61,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'paul_pedals.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -71,6 +76,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bag.context.bag_contents',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
@@ -139,3 +148,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 A_NUMBER = 33
 A_WORD = 'waffle'
+DELIVERY = 5.00

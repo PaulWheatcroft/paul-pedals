@@ -46,10 +46,12 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>£{{ total }}</td>
+        <td></td>
+        <td><strong>£{{ total }}</strong></td>
         
     </tr>
         </tbody>
     </table>
-    <a href="javascript:window.history.back();" class="btn btn-primary">Back</a>
+    <a href="{% url 'products' %}" class="btn btn-primary">Back to Products</a>
+    <a href="{% url 'checkout' %}" class="btn btn-secondary">Checkout</a>
 {% endblock %}

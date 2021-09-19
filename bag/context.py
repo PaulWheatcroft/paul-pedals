@@ -11,6 +11,7 @@ def bag_contents(request):
     product_count = 0
     pointless_number = Decimal(settings.A_NUMBER)
     bag = request.session.get('bag', {})
+    delivery = Decimal(settings.DELIVERY)
 
     for item_id, quantity in bag.items():
         product = get_object_or_404(Product, pk=item_id)
@@ -24,11 +25,15 @@ def bag_contents(request):
             'line_price': line_price
         })
 
+    grand_total = total + delivery
+
     context = {
         'pointless_number': pointless_number,
         'bag_items': bag_items,
         'total': total,
         'product_count': product_count,
+        'delivery': delivery,
+        'grand_total': grand_total
     }
 
     return context
