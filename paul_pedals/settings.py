@@ -149,3 +149,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 A_NUMBER = 33
 A_WORD = 'waffle'
 DELIVERY = 5.00
+STRIPE_CURRENCY = 'gbp'
+# These should really be environment variables
+STRIPE_PUBLIC_KEY = 'pk_test_51JbUF4E676Ho8chXSqgM3PjbtsRqWU3iH5vA4RjcwIflGvjsjAROiplHK1vYPOVrdADg3EE4BX4ByGgbltUqsXp900Vu6FJK4K'
+STRIPE_SECRET_KEY = 'sk_test_51JbUF4E676Ho8chXR9f0v9ofwoPiH5KFLLh5vE76zARnD0PrCx43cmljS8FikNDDGzsUeySZmJBR6tDjkRV2P2uh00F4AsZyKL'
