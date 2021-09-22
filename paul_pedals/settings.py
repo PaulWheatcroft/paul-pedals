@@ -149,6 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 A_NUMBER = 33
 A_WORD = 'waffle'
 DELIVERY = 5.00
+FREE_DELIVERY_THRESHOLD = 100
+STANDARD_DELIVERY_PERCENTAGE = 1
 STRIPE_CURRENCY = 'gbp'
 # These should really be environment variables
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')

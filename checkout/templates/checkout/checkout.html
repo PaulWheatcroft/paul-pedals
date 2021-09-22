@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
-{% endblock %}
-
+{% load bag_tools %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -48,11 +44,11 @@
                             </a>
                         </div>
                         <div class="col-7">
-                            <p class="my-0"><strong>{{ item.product.title }}</strong></p>
+                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                             <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                         </div>
                         <div class="col-3 text-right">
-                            <p class="my-0 small text-muted">{{ item.line_price }}</p>
+                            <p class="my-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -64,9 +60,9 @@
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
-                        <p class="my-0">£{{ total | floatformat:2 }}</p>
-                        <p class="my-0">£{{ delivery | floatformat:2 }}</p>
-                        <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
+                        <p class="my-0">${{ total | floatformat:2 }}</p>
+                        <p class="my-0">${{ delivery | floatformat:2 }}</p>
+                        <p class="my-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
             </div>
@@ -103,21 +99,31 @@
                     <fieldset class="px-3">
                         <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                         <!-- A Stripe card element will go here -->
-                        <div class="mb-3" id="card-element"></div>
+                        <div class="mb-3" id="card-element" class="just-work">
+                        </div>
 
                         <!-- Used to display form errors -->
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     </fieldset>
 
                     <div class="submit-button text-right mt-5 mb-2">                    
-						<a href="{% url 'view_bag' %}" class="btn btn-primary">Adjust Bag</a>
-                        <button id="submit-button" class="btn btn-secondary">
+						<a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
+							<span class="icon">
+								<i class="fas fa-chevron-left"></i>
+							</span>
+							<span class="font-weight-bold">Adjust Bag</span>
+						</a>
+						<button id="submit-button" class="btn btn-black rounded-0">
 							<span class="font-weight-bold">Complete Order</span>
 							<span class="icon">
 								<i class="fas fa-lock"></i>
 							</span>
 						</button>
-						<p class="small text-danger my-0">Your card will be charged £{{ grand_total|floatformat:2 }}</strong></span>
+						<p class="small text-danger my-0">
+							<span class="icon">
+								<i class="fas fa-exclamation-circle"></i>
+							</span>
+							<span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
 						</p>
 					</div>
                 </form>
@@ -127,10 +133,8 @@
 {% endblock %}
 
 {% block postloadjs %}
-
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'js/stripe_elements.js' %}"></script>
-
 {% endblock %}
